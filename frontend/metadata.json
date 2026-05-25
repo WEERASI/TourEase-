@@ -1,0 +1,7 @@
+{
+  "name": "TourEase - Sri Lanka Tourism Management System",
+  "description": "A comprehensive design system and UI implementation for a Sri Lankan tourism management platform, featuring ocean-inspired colors, tropical vibes, and robust form management.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
