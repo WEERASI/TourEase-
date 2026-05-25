@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import Tour from '../models/tour';
 import Booking from '../models/booking';
 import Review from '../models/review';
-import User from '../models/User';
+import User from '../models/user';
 
 // @desc    Get operator dashboard statistics
 // @route   GET /api/operator/dashboard

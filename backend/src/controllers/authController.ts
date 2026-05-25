@@ -3,7 +3,7 @@
 
 import { Request, Response } from 'express';
 import { OAuth2Client } from 'google-auth-library';
-import User from '../models/User';
+import User from '../models/user';
 import { RegisterRequest, AuthRequest, GoogleAuthRequest } from '../types';
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -277,7 +277,7 @@ export const googleAuth = async (req: Request, res: Response): Promise<void> => 
           headers: { Authorization: `Bearer ${credential}` },
         });
         if (userInfoRes.ok) {
-          const userInfo = await userInfoRes.json();
+          const userInfo = await userInfoRes.json() as any;
           googleId = userInfo.sub;
           email = userInfo.email;
           name = userInfo.name;

@@ -3,7 +3,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../models/user';
 import { UserRole } from '../types';
 
 // Extend Express Request type to include user

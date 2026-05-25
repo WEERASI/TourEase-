@@ -2,7 +2,7 @@
 // Handles all Admin dashboard operations
 
 import { Request, Response } from 'express';
-import User from '../models/User';
+import User from '../models/user';
 import Tour from '../models/tour';
 import Hotel from '../models/hotel';
 import Booking from '../models/booking';
@@ -230,14 +230,14 @@ export const getOperators = async (req: Request, res: Response): Promise<void> =
         const operators = await User.find(filter).select('-password').sort({ createdAt: -1 });
 
         // Get tour counts for each operator
-        const operatorIds = operators.map((o) => o._id);
+        const operatorIds = operators.map((o: any) => o._id);
         const tourCounts = await Tour.aggregate([
             { $match: { operator: { $in: operatorIds } } },
             { $group: { _id: '$operator', count: { $sum: 1 } } },
         ]);
         const tourMap = new Map(tourCounts.map((t: any) => [t._id.toString(), t.count]));
 
-        const operatorsWithStats = operators.map((op) => ({
+        const operatorsWithStats = operators.map((op: any) => ({
             ...op.toObject(),
             tourCount: tourMap.get(op._id.toString()) || 0,
         }));
