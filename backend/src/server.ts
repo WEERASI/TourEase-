@@ -30,8 +30,13 @@ dotenv.config();
 // Create Express application
 const app: Application = express();
 
-// Define port (from .env or default to 5000)
-const PORT = process.env.PORT || 5000;
+// Force standard parsing to override any weird text string injected by local .env formats
+let PORT: any = process.env.PORT || 5000;
+
+// If PORT is accidentally read as a non-number or cluster string like 'kuberns', reset it to 10000 for Render
+if (isNaN(Number(PORT))) {
+  PORT = 10000;
+}
 
 // ==========================================
 // MIDDLEWARE
